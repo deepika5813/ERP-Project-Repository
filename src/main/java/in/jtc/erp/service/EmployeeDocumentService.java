@@ -33,7 +33,10 @@ public class EmployeeDocumentService {
 	 
 	 public EmployeeDocument updateDocument(Long id, EmployeeDocument updateDoc) {
 		 Optional<EmployeeDocument> existDoc = repo.findById(id);
-		 if(existDoc.isPresent()) {
+		 if (existDoc.isPresent()) {
+		        if (updateDoc == null) {
+		            throw new RuntimeException("Update data cannot be null");
+		        }
 			 EmployeeDocument document = existDoc.get();
 			 document.setDocumentData(updateDoc.getDocumentData());
 			 document.setDocumentName(updateDoc.getDocumentName());
